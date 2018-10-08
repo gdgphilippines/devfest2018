@@ -1,6 +1,6 @@
 const template = (html, self) => function () {
   const { sponsor, _updateImg, img, typeId } = this;
-  const { name, url, storageImg, img: oldImg } = sponsor;
+  const { name, url, storageImg, img: oldImg, $key } = sponsor;
   return html`
     ${storageImg
       ? html`
@@ -14,16 +14,16 @@ const template = (html, self) => function () {
         ${url
           ? html`
             <a class="sponsor-item-image-anchor ${typeId}" href="${url}" target="_blank" rel="noopener" title="${name}">
-              <lazy-picture alt="${name}" class="sponsor-item-image ${typeId}" src=${(img || oldImg)}></lazy-picture>
+              <lazy-picture alt="${name}" class="sponsor-item-image ${typeId} ${$key}" src=${(img || oldImg)}></lazy-picture>
             </a>
           `
           : html`
-            <lazy-picture alt="${name}" class="sponsor-item-image ${typeId}" src=${(img || oldImg)}></lazy-picture>
+            <lazy-picture alt="${name}" class="sponsor-item-image ${typeId} ${$key}" src=${(img || oldImg)}></lazy-picture>
           `
         }
 
       `
-      : ''
+      : html`Loading ${name} logo...`
     }
   `;
 }.bind(self)();
