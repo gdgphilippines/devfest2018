@@ -5,6 +5,7 @@ const onWrite = admin => (change, context) => {
   const document = after.exists ? after.data() : null;
   const oldDocument = before.exists ? before.data() : null;
   const database = admin.database();
+  const bucket = admin.storage().bucket();
   const path = `events/${eventId}/sponsors`;
   // const pathType = `events/${eventId}/sponsor-types`;
   const updates = {};
@@ -25,6 +26,29 @@ const onWrite = admin => (change, context) => {
     };
     if (document.typeId) {
       updates[`${path}/lists/types/${document.typeId}/${sponsorId}`] = true;
+    }
+    if (bucket && document.storageImg) {
+      const file = bucket.file(document.storageImg);
+      return file
+        .exists()
+        .then(response => {
+          const [exists] = response;
+          return exists ? file.makePublic() : Promise.resolve();
+        })
+        .then(response => {
+          return response ? file.getMetadata() : Promise.resolve();
+        })
+        .then(response => {
+          if (response) {
+            const [metadata] = response;
+            if (metadata) {
+              const { mediaLink } = metadata;
+              console.log(mediaLink);
+              updates[`${path}/data/${sponsorId}`].img = mediaLink;
+            }
+          }
+          return database.ref().update(updates);
+        });
     }
   } else { // onDelete
     updates[`${path}/data/${sponsorId}`] = null;
