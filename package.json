@@ -1,6 +1,6 @@
 {
   "name": "devfest2018",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Element Lite Starter Kit",
   "main": "index.js",
   "scripts": {
