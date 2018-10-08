@@ -2,6 +2,21 @@ const template = (html, self) => function () {
   const { download } = this;
   return html`
     <header class="banner">
+
+
+      <div class="banner-image-container">
+        <lazy-picture
+          class="banner-image"
+          cover
+          src="/assets/images/banner/mobile.jpg"
+          thumbnail="/assets/images/banner/thumbnail.jpg"
+          alt="GDG Devfest 2018 Banner Picture">
+          <source srcset="/assets/images/banner/desktop.jpg" media="(min-width: 1280px)">
+          <source srcset="/assets/images/banner/small-desktop.jpg" media="(min-width: 1024px)">
+          <source srcset="/assets/images/banner/tablet.jpg" media="(min-width: 800px)">
+        </lazy-picture>
+      </div>
+      <div class="banner-gradient-container"></div>
       <div class="banner-text">
         <h1 class="h1">
           The Grandest Technology
@@ -32,20 +47,7 @@ const template = (html, self) => function () {
 
       </div>
 
-      <div class="banner-gradient-container"></div>
 
-      <div class="banner-image-container">
-        <lazy-picture
-          class="banner-image"
-          cover
-          src="/assets/images/banner/mobile.jpg"
-          thumbnail="/assets/images/banner/thumbnail.jpg"
-          alt="GDG Devfest 2018 Banner Picture">
-          <source srcset="/assets/images/banner/desktop.jpg" media="(min-width: 1280px)">
-          <source srcset="/assets/images/banner/small-desktop.jpg" media="(min-width: 1024px)">
-          <source srcset="/assets/images/banner/tablet.jpg" media="(min-width: 800px)">
-        </lazy-picture>
-      </div>
     </header>
 
     <!-- About DevFest Philippines Section-->
