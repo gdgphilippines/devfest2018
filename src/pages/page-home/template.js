@@ -38,7 +38,7 @@ const template = (html, self) => function () {
 
           <div class="banner-buttons">
             <div style="margin-bottom: 1rem">Know more about the event:</div>
-            <a href="https://drive.google.com/file/d/1exCPSR3m8ceTQf8sCsUlYzfkx54ajsos/view" @click="${download.bind(this)}" target="_blank" rel="noopener" class="button-outline">
+            <a href="https://firebasestorage.googleapis.com/v0/b/gdgph-12154.appspot.com/o/events%2Fdevfest2018%2Fprimer%2FDevfest%20Philippines%202018%20Primer.pdf?alt=media&token=b1b8a217-6451-43fb-aa70-a87144127a49" @click="${download.bind(this)}" target="_blank" rel="noopener" class="button-outline">
               DOWNLOAD EVENT PRIMER
             </a>
           </div>
