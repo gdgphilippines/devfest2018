@@ -4,7 +4,7 @@ const template = (html, self) => function () {
     <slot></slot>
     ${list.length
       ? list.map(item => html`
-        ${item.name}
+        ${item.name}, ${item.email}
       `)
       : html`
         Loading...

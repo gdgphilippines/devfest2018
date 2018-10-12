@@ -7,12 +7,18 @@ class Component extends UserStateMixin(HTMLElement) {
 
   async _getUserState ({ user }) {
     if (user) {
-      const { uid } = user;
-      const data = await databaseGet('main', {
-        path: `events/devfest2018/sponsor-members/data/${uid}`
-      });
-      if (data) {
-        window.history.pushState({}, '', '/sponsor-dashboard');
+      try {
+        const { uid } = user;
+        const data = await databaseGet('main', {
+          path: `events/devfest2018/sponsor-members/data/${uid}`
+        });
+        if (data) {
+          window.history.pushState({}, '', '/sponsor-dashboard');
+          window.dispatchEvent(new window.CustomEvent('location-change'));
+        }
+      } catch (error) {
+        this.error(error);
+        window.history.pushState({}, '', '/profile');
         window.dispatchEvent(new window.CustomEvent('location-change'));
       }
     }
