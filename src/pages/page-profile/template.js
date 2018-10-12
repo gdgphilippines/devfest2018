@@ -5,6 +5,9 @@ const template = html => html`
   <redirect-on-unauthenticated></redirect-on-unauthenticated>
 
   <!-- Put loader of profile to localforage -->
+  <ticket-wrapper>
+    <reverse-ticket-loader></reverse-ticket-loader>
+  </ticket-wrapper>
 
   <!-- Put wrapper for profile -->
   <div class="main">
@@ -36,6 +39,11 @@ const template = html => html`
         </h1>
       </ticket-anchor>
     </ticket-loading-wrapper>
+
+    <reverse-ticket-wrapper>
+      <ticket-profile class="profile-component">
+      </ticket-profile>
+    </reverse-ticket-wrapper>
 
     <div class="profile-component">
       <h1 class="login-component-h1">

@@ -11,6 +11,10 @@ import '../../smart-components/unlink-account-wrapper/index.js';
 import '../../smart-components/redirect-on-unauthenticated/index.js';
 import '../../smart-components/user-wrapper/index.js';
 import '../../smart-components/ticket-loading-wrapper/index.js';
+import '../../smart-components/ticket-wrapper/index.js';
+import '../../smart-components/reverse-ticket-loader/index.js';
+import '../../smart-components/reverse-ticket-wrapper/index.js';
+import '../../components/ticket-profile/index.js';
 import '../../components/user-profile';
 const { HTMLElement, customElements } = window;
 

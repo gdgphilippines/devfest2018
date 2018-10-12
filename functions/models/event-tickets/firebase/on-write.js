@@ -37,7 +37,16 @@ const onWrite = (admin, firestore) => (change, context) => {
         }
 
         const { profile, answers } = json;
-        const { name, addresses, company, cell_phone: phone, job_title: position, gender, age } = profile;
+        const {
+          name,
+          addresses,
+          company,
+          cell_phone: phone,
+          job_title: position,
+          gender,
+          age,
+          email
+        } = profile;
         const eventResponse = {};
         let home = null;
         let work = null;
@@ -49,7 +58,7 @@ const onWrite = (admin, firestore) => (change, context) => {
         if (answers && answers.length) {
           answers.forEach(answerObj => {
             const { question_id: question, answer } = answerObj;
-            const prop = questions[question];
+            const prop = questions[eventId][question];
             if (prop && answer) {
               eventResponse[prop] = answer;
             }
@@ -57,6 +66,8 @@ const onWrite = (admin, firestore) => (change, context) => {
         }
 
         const obj = {
+          email,
+          name,
           gender,
           home,
           work,
@@ -70,25 +81,8 @@ const onWrite = (admin, firestore) => (change, context) => {
         return Promise.all([
           Promise.resolve(obj),
           firestore.doc(`events/${eventId}/tickets/${userId}`).set(Object.assign({}, obj, {
-            ticketId,
-            name
-          }))
-        ]);
-      })
-      .then(results => {
-        const {
-          gender,
-          home,
-          work,
-          company,
-          age,
-          phone,
-          position,
-          eventResponse
-        } = results[0];
-
-        return Promise.all([
-          Promise.resolve(eventResponse),
+            ticketId
+          })),
           firestore.doc(`users/${userId}`).update({
             gender,
             home,
@@ -101,17 +95,33 @@ const onWrite = (admin, firestore) => (change, context) => {
         ]);
       })
       .then(results => {
-        const { eventResponse } = results[0];
+        const {
+          email,
+          name,
+          gender,
+          age,
+          phone,
+          eventResponse
+        } = results[0];
         updates[`${path}/${ticketId}`] = {
           userId,
-          informationConsent: (eventResponse && eventResponse.informationConsent) || null
+          informationConsent: (eventResponse && eventResponse.informationConsent) || false,
+          email: email || '',
+          name: name || '',
+          age: age || '',
+          phone: phone || '',
+          gender: gender || '',
+          positionType: (eventResponse && eventResponse.positionType) || ''
         };
         return database.ref().update(updates);
       })
       .catch(error => {
         console.error(error);
         updates[`events/${eventId}/tickets/data/${userId}`] = null;
-        return database.ref().update(updates);
+        return Promise.all([
+          database.ref().update(updates),
+          firestore.doc(`events/${eventId}/tickets/${userId}`).delete()
+        ]);
       });
   } else {
     return firestore.doc(`events/${eventId}/tickets/${userId}`).delete()

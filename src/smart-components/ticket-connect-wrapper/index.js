@@ -36,27 +36,29 @@ class Component extends UserStateMixin(EventWrapperMixin(HTMLElement)) {
   }
 
   async processScan ({ detail: ticketId }) {
-    const { uid } = this.user;
-    const snackbar = document.querySelector('.snackbar-lite');
-    snackbar.showText('Processing Scan...');
-    try {
-      if (uid && ticketId) {
-        const ref = firebase.database().ref(`events/devfest2018/tickets/data/${uid}`);
-        await ref.set({
-          ticketId,
-          dateCreated: firebase.database.ServerValue.TIMESTAMP
-        });
-        const snackbar = document.querySelector('.snackbar-lite');
-        snackbar.showText('Ticket has been connected...');
-        window.history.pushState({}, '', '/profile');
-        window.dispatchEvent(new window.CustomEvent('location-change'));
-      } else {
-        throw new Error('ticket/no-ticket-id');
+    if (this.user) {
+      const { uid } = this.user;
+      const snackbar = document.querySelector('.snackbar-lite');
+      snackbar.showText('Processing Scan...');
+      try {
+        if (uid && ticketId) {
+          const ref = firebase.database().ref(`events/devfest2018/tickets/data/${uid}`);
+          await ref.set({
+            ticketId,
+            dateCreated: firebase.database.ServerValue.TIMESTAMP
+          });
+          const snackbar = document.querySelector('.snackbar-lite');
+          snackbar.showText('Ticket has been connected...');
+          window.history.pushState({}, '', '/profile');
+          window.dispatchEvent(new window.CustomEvent('location-change'));
+        } else {
+          throw new Error('ticket/no-ticket-id');
+        }
+      } catch (error) {
+        console.log(error);
+        this.error(error);
+        this.firstElementChild.startScanning();
       }
-    } catch (error) {
-      console.log(error);
-      this.error(error);
-      this.firstElementChild.startScanning();
     }
   }
 }

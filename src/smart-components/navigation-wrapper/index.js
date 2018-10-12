@@ -1,9 +1,11 @@
+import { UserStateMixin } from '../../mixins/user-state-mixin/index.js';
 const { HTMLElement, customElements } = window;
 
-class Component extends HTMLElement {
+class Component extends UserStateMixin(HTMLElement) {
   static get is () { return 'navigation-wrapper'; }
 
   connectedCallback () {
+    if (super.connectedCallback) super.connectedCallback();
     this._setNavigation([
       {
         label: 'Home',
@@ -25,6 +27,10 @@ class Component extends HTMLElement {
     if (navComponent) {
       navComponent.navigation = navigation;
     }
+  }
+
+  _getUserState ({ user }) {
+    this.firstElementChild.user = user;
   }
 }
 

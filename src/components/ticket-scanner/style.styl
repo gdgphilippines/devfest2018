@@ -6,9 +6,10 @@
 @import '../../styles/components/link.styl'
 
 :host
-  display block
+  display inline-block
   width 100%
   background $light
+  padding 24px
 
 .button-group
   text-align center
@@ -16,6 +17,26 @@
 .button
   margin-bottom 5px
 
+.canvas-ticket-scanner
+  opacity 0
+  z-index -1
+  position absolute
+  top 0
+  left 0
+
+.video-ticket-scanner
+  width calc(100% - 48px)
+  box-sizing border-box
+  background $dark
+
+.input-container-component
+  text-align left
+
 button-class()
 
 link-class()
+
+input-class()
+
+.input
+  box-sizing border-box

@@ -9,7 +9,7 @@ const template = html => html`
   <!-- Put wrapper for profile -->
   <div class="main">
     <ticket-connect-wrapper>
-      <ticket-scanner>
+      <ticket-scanner class="ticket-scanner-component">
       </ticket-scanner>
     </ticket-connect-wrapper>
 

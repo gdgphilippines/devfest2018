@@ -3,6 +3,7 @@ import { PropertiesLite } from '@littleq/element-lite/properties-lite.js';
 import { render, html } from 'lit-html';
 import { template } from './template.js';
 import style from './style.styl';
+import '../input-container/index.js';
 const { HTMLElement, customElements, CustomEvent } = window;
 
 class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
@@ -138,6 +139,20 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
 
     var dataURL = this._canvas.toDataURL();
     this._qr.decode(dataURL);
+  }
+
+  submit (event) {
+    const { target: form } = event;
+    event.preventDefault();
+    const detail = form.ticket.value;
+    try {
+      if (detail) {
+        this.dispatchEvent(new CustomEvent('scan-result', { detail }));
+        this.stopScanning();
+      }
+    } catch (error) {
+      this.errorDispatch(error);
+    }
   }
 
   async processQrResult (error, response) {

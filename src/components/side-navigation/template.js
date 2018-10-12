@@ -1,5 +1,5 @@
 const template = (html, self) => function () {
-  const { navigation, locationId, closeSidebar } = this;
+  const { navigation, user, locationId, closeSidebar } = this;
   return html`
     <nav class="side-navigation">
       <ul class="side-navigation-list">
@@ -14,6 +14,20 @@ const template = (html, self) => function () {
 
           </li>
         `)}
+
+        <li class="side-navigation-item">
+          ${user
+          ? html`
+            <a href="/profile" class="side-navigation-anchor">
+              Profile
+            </a>
+          `
+          : html`
+            <a href="/login" class="side-navigation-anchor">
+              Login
+            </a>
+          `}
+        </li>
       </ul>
     </nav>
   `;

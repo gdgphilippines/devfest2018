@@ -18,6 +18,15 @@ class Component extends TemplateLite(HTMLElement) {
     return this.__navigation || [];
   }
 
+  set user (user) {
+    this.__user = user;
+    this.requestRender();
+  }
+
+  get user () {
+    return this.__user;
+  }
+
   template () {
     return html`<style>${style.toString()}</style>${template(html, this)}`;
   }
