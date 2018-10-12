@@ -25,7 +25,14 @@ const onWrite = (admin, firestore) => (change, context) => {
     }
     const url = `https://www.eventbriteapi.com/v3/events/${event[eventId]}/attendees/${ticketId.substring(9, 19)}?token=${key}`;
 
-    return fetch(url)
+    return database.ref(`${path}/${ticketId}`).once('value')
+      .then(snapshot => {
+        if (snapshot.val()) {
+          const error = new Error('Ticket is already connected to another account');
+          return Promise.reject(error);
+        }
+        return fetch(url);
+      })
       .then(result => result.json())
       .then(json => {
         if (json.status_code === 400) {

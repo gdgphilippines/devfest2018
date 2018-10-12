@@ -40,7 +40,7 @@ const template = (html, self) => function () {
               Position: ${positionType}
             </li>
             <li class="ticket-item">
-              Sharing information consent: ${informationConsent.toLowerCase() === 'no'
+              Sharing information consent: ${(informationConsent && informationConsent.toLowerCase()) === 'no'
                 ? html`
                   No
                   <p class="">
@@ -53,7 +53,7 @@ const template = (html, self) => function () {
                 : html`
                   Yes
                   <p class="">
-                    If you wish to not share your information above to sponsors, click here...
+                    If you wish to not share your information above to sponsors in the future, click here...
                     <button class="button" @click="${toggleConsent.bind(this)}">Do not Give Information</button>
                     Take note that they will not be able to scan your ticket.
                   </p>

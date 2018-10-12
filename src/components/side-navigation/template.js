@@ -15,7 +15,7 @@ const template = (html, self) => function () {
           </li>
         `)}
 
-        <li class="side-navigation-item">
+        <li class="side-navigation-item" @click="${closeSidebar.bind(this)}">
           ${user
           ? html`
             <a href="/profile" class="side-navigation-anchor">

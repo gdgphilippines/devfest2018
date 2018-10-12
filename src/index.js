@@ -1,4 +1,5 @@
 import '@littleq/core-lite';
+import './utils/firebase.js';
 import './components/snackbar-lite/index.js';
 import { fragments } from './utils/fragments.js';
 import { updateState } from './utils/state.js';

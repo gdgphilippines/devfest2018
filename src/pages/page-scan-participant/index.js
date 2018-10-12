@@ -4,12 +4,14 @@ import { template } from './template.js';
 import style from './style.styl';
 import '../../components/footer-section/index.js';
 import '../../smart-components/redirect-on-unauthenticated/index.js';
-import '../../smart-components/ticket-connect-wrapper/index.js';
+import '../../smart-components/redirect-on-non-sponsor-member/index.js';
+import '../../smart-components/sponsor-scan-wrapper/index.js';
+import '../../smart-components/sponsor-member-loader/index.js';
 import '../../components/ticket-scanner/index.js';
 const { HTMLElement, customElements } = window;
 
 class Page extends TemplateLite(HTMLElement) {
-  static get is () { return 'page-connect-ticket'; }
+  static get is () { return 'page-scan-participant'; }
 
   static get renderer () { return render; }
 

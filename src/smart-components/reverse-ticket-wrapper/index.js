@@ -13,7 +13,7 @@ class Component extends ReverseTicketStateMixin(EventWrapperMixin(HTMLElement)) 
 
   connectedCallback () {
     if (super.connectedCallback) super.connectedCallback();
-    this.firstElementChild.dataReady = !!this.firstElementChild.reverseTicket;
+    this.firstElementChild.dataReady = false;
     this.addChildEventListener('toggle-consent', this._boundToggleConsent);
   }
 

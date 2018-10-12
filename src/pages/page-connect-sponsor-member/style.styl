@@ -1,0 +1,31 @@
+@import '../../styles/general/typography.styl'
+@import '../../styles/general/color.styl'
+@import '../../styles/general/limit-width.styl'
+@import '../../styles/components/button.styl'
+@import '../../styles/components/card.styl'
+
+:host
+  display block
+  min-height 100vh
+  background $light
+
+.header-space
+  background $dark-violet
+  height 144px
+
+.main
+  box-sizing border-box
+  min-height calc(100vh - 400px)
+  margin 6rem auto
+  max-width 24rem
+
+  @media screen and (max-width: 450px)
+    margin-top 3rem
+
+.login-component-h1
+  h1-base($dark)
+  margin 0 0 24px
+
+.profile-component
+  padding 24px
+  box-sizing border-box

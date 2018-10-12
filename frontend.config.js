@@ -37,6 +37,9 @@ const fragments = {
   'page-login': 'src/pages/page-login/index.js',
   'page-logout': 'src/pages/page-logout/index.js',
   'page-profile': 'src/pages/page-profile/index.js',
+  'page-connect-sponsor-member': 'src/pages/page-connect-sponsor-member/index.js',
+  'page-sponsor-dashboard': 'src/pages/page-sponsor-dashboard/index.js',
+  'page-scan-participant': 'src/pages/page-scan-participant/index.js',
   'page-connect-ticket': 'src/pages/page-connect-ticket/index.js',
   'page-disconnect-ticket': 'src/pages/page-disconnect-ticket/index.js',
   'page-not-found': 'src/pages/page-not-found/index.js'
@@ -82,6 +85,18 @@ const routes = [
   {
     route: '/session/:sessionId',
     page: 'page-session'
+  },
+  {
+    route: '/connect-sponsor',
+    page: 'page-connect-sponsor-member'
+  },
+  {
+    route: '/sponsor-dashboard',
+    page: 'page-sponsor-dashboard'
+  },
+  {
+    route: '/scan-participant',
+    page: 'page-scan-participant'
   },
   {
     route: '/codelabs',

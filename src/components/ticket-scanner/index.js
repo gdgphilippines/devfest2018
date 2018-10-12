@@ -67,6 +67,7 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
         this._stream = await window.navigator.mediaDevices.getUserMedia({ video: true });
       } catch (error) {
         this.errorDispatch(error);
+        this._cannotScan = true;
       }
     }
 
@@ -117,9 +118,11 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
 
   startScanning () {
     this._video.play();
-    this._interval = setInterval(() => {
-      this.capture();
-    }, 100);
+    if (!this._cannotScan) {
+      this._interval = setInterval(() => {
+        this.capture();
+      }, 100);
+    }
   }
 
   capture () {
@@ -158,11 +161,10 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
   async processQrResult (error, response) {
     try {
       if (error) {
-        this.errorDispatch(error);
+        // this.errorDispatch(error);
       }
       if (response && this.user) {
         const { result: detail } = response;
-        console.log(detail);
         if (detail) {
           this.dispatchEvent(new CustomEvent('scan-result', { detail }));
           this.stopScanning();

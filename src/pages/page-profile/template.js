@@ -9,6 +9,8 @@ const template = html => html`
     <reverse-ticket-loader></reverse-ticket-loader>
   </ticket-wrapper>
 
+  <sponsor-member-loader></sponsor-member-loader>
+
   <!-- Put wrapper for profile -->
   <div class="main">
     <user-wrapper>
@@ -44,6 +46,14 @@ const template = html => html`
       <ticket-profile class="profile-component">
       </ticket-profile>
     </reverse-ticket-wrapper>
+
+    <sponsor-member-wrapper>
+      <sponsor-member-anchor class="profile-component">
+        <h1 class="login-component-h1">
+          Sponsors page (Sponsors only)
+        </h1>
+      </sponsor-member-anchor>
+    </sponsor-member-wrapper>
 
     <div class="profile-component">
       <h1 class="login-component-h1">
