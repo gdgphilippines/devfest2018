@@ -70,4 +70,6 @@ public
 
 config/firebase.config.js
 
+functions/config/eventbrite-secret.json
+
 uploader

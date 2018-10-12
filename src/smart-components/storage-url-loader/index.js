@@ -1,5 +1,5 @@
-import { readStorageURL } from '../../utils/firebase';
-import { CheckFirebaseReadyMixin } from '../../mixins/check-firebase-ready.js';
+import { storageGetURL } from '../../utils/firebase';
+import { CheckFirebaseReadyMixin } from '../../mixins/check-firebase-ready/index.js';
 const { HTMLElement, customElements, CustomEvent } = window;
 
 class Component extends CheckFirebaseReadyMixin(HTMLElement) {
@@ -12,7 +12,7 @@ class Component extends CheckFirebaseReadyMixin(HTMLElement) {
   set path (path) {
     this._path = path;
     if (path) {
-      this.readStorageURL(path);
+      this.storageGetURL(path);
     }
   }
 
@@ -31,12 +31,12 @@ class Component extends CheckFirebaseReadyMixin(HTMLElement) {
 
   _whenFirebaseReady () {
     if (this.path) {
-      this.readStorageURL(this.path);
+      this.storageGetURL(this.path);
     }
   }
 
-  async readStorageURL (path) {
-    this.url = await readStorageURL(path);
+  async storageGetURL (path) {
+    this.url = await storageGetURL(path);
   }
 
   attributeChangedCallback (name, oldValue, newValue) {

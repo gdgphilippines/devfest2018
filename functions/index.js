@@ -14,12 +14,17 @@ const userAuthOnCreate = require('./models/users/auth/on-create');
 const userAuthOnDelete = require('./models/users/auth/on-delete');
 const userFirestoreOnWrite = require('./models/users/firestore/on-write');
 const permissionFirestoreOnWrite = require('./models/permissions/firestore/on-write');
+const eventTicketsFirebaseOnWrite = require('./models/event-tickets/firebase/on-write');
 
 admin.initializeApp();
 
+const settings = { timestampsInSnapshots: true };
+const firestore = admin.firestore();
+firestore.settings(settings);
+
 // auth
-exports.userAuthOnCreate = functions.auth.user().onCreate(userAuthOnCreate(admin));
-exports.userAuthOnDelete = functions.auth.user().onDelete(userAuthOnDelete(admin));
+exports.userAuthOnCreate = functions.auth.user().onCreate(userAuthOnCreate(admin, firestore));
+exports.userAuthOnDelete = functions.auth.user().onDelete(userAuthOnDelete(firestore));
 
 exports.helloWorld = functions.https.onRequest(helloWorld());
 exports.user = functions.https.onRequest(user());
@@ -30,8 +35,9 @@ exports.scheduleTimeslotFirestoreOnWrite = scheduleTimeslotFirestoreOnWrite(func
 exports.scheduleSessionFirestoreOnWrite = scheduleSessionFirestoreOnWrite(functions, admin);
 exports.sponsorTypeFirestoreOnWrite = sponsorTypeFirestoreOnWrite(functions, admin);
 exports.sponsorCompanyFirestoreOnWrite = sponsorCompanyFirestoreOnWrite(functions, admin);
-exports.userFirestoreOnWrite = userFirestoreOnWrite(functions, admin);
+exports.userFirestoreOnWrite = userFirestoreOnWrite(functions, firestore);
 exports.permissionFirestoreOnWrite = permissionFirestoreOnWrite(functions, admin);
+exports.eventTicketsFirebaseOnWrite = eventTicketsFirebaseOnWrite(functions, admin, firestore);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions

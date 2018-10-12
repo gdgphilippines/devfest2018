@@ -3,6 +3,9 @@ import { render, html } from 'lit-html';
 import { template } from './template.js';
 import style from './style.styl';
 import '../../components/footer-section/index.js';
+import '../../components/login-component/index.js';
+import '../../smart-components/login-wrapper/index.js';
+import '../../smart-components/redirect-on-authenticated/index.js';
 const { HTMLElement, customElements } = window;
 
 class Page extends TemplateLite(HTMLElement) {

@@ -11,6 +11,11 @@ const template = (html, self) => function () {
             </a>
           </li>
         `)}
+        <li class="navigation-item">
+          <a href="/login" class="navigation-anchor">
+            Login
+          </a>
+        </li>
       </ul>
     </nav>
   `;

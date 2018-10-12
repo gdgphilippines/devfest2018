@@ -1,16 +1,18 @@
-const onWrite = admin => (change, context) => {
+const onWrite = (firestore) => (change, context) => {
   const { before, after } = change;
   const { params } = context;
   const { userId } = params;
-  const settings = { timestampsInSnapshots: true };
   const document = after.exists ? after.data() : null;
   const oldDocument = before.exists ? before.data() : null;
-  const firestore = admin.firestore();
-  firestore.settings(settings);
 
   if (document && !oldDocument) { // onCreate
     return firestore.doc(`permissions/${userId}`).set({
-      permission: []
+      writeDatabase: [],
+      readDatabase: [],
+      writeFirestore: [],
+      readFirestore: [],
+      writeStorage: [],
+      readStorage: []
     });
   } else if (oldDocument && !document) { // onDelete
     return firestore.doc(`permissions/${userId}`).delete();
@@ -18,7 +20,7 @@ const onWrite = admin => (change, context) => {
   return null;
 };
 
-module.exports = (functions, admin) => functions
+module.exports = (functions, firestore) => functions
   .firestore
   .document(`users/{userId}`)
-  .onWrite(onWrite(admin));
+  .onWrite(onWrite(firestore));

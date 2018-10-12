@@ -35,7 +35,10 @@ const fragments = {
   'page-codelabs': 'src/pages/page-codelabs/index.js',
   'page-codelab': 'src/pages/page-codelab/index.js',
   'page-login': 'src/pages/page-login/index.js',
+  'page-logout': 'src/pages/page-logout/index.js',
   'page-profile': 'src/pages/page-profile/index.js',
+  'page-connect-ticket': 'src/pages/page-connect-ticket/index.js',
+  'page-disconnect-ticket': 'src/pages/page-disconnect-ticket/index.js',
   'page-not-found': 'src/pages/page-not-found/index.js'
 };
 
@@ -57,8 +60,20 @@ const routes = [
     page: 'page-login'
   },
   {
+    route: '/logout',
+    page: 'page-logout'
+  },
+  {
     route: '/profile',
     page: 'page-profile'
+  },
+  {
+    route: '/connect-ticket',
+    page: 'page-connect-ticket'
+  },
+  {
+    route: '/disconnect-ticket',
+    page: 'page-disconnect-ticket'
   },
   {
     route: '/speakers/:speakerId',

@@ -45,7 +45,9 @@
     "lit-html": "^0.11.0",
     "localforage": "^1.7.2",
     "marked": "^0.5.1",
+    "md-gum-polyfill": "^1.0.0",
     "object-fit-images": "^3.2.3",
+    "qrcode-reader": "^1.0.4",
     "raven-js": "^3.26.2",
     "weakmap-polyfill": "^2.0.0",
     "whatwg-fetch": "^2.0.3"

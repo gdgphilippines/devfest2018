@@ -1,10 +1,9 @@
-module.exports = (admin) => (user) => {
-  const settings = { timestampsInSnapshots: true };
-  const firestore = admin.firestore();
-  firestore.settings(settings);
-
+module.exports = (firestore) => (user) => {
   // do other things here before deleting
   const { uid } = user;
 
-  return firestore.doc(`users/${uid}`).delete();
+  return Promise.all([
+    firestore.doc(`users/${uid}`).delete(),
+    firestore.doc(`permissions/${uid}`).delete()
+  ]);
 };

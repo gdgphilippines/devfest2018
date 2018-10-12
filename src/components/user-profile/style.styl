@@ -1,0 +1,40 @@
+@import '../../styles/general/typography.styl'
+@import '../../styles/general/color.styl'
+@import '../../styles/general/shadow.styl'
+@import '../../styles/components/input.styl'
+@import '../../styles/components/button.styl'
+@import '../../styles/components/link.styl'
+
+:host
+  display block
+  width 100%
+  background $light
+
+.profile-avatar
+  --border-radius 50%
+  border-radius 50%
+  width 100%
+  max-width 200px
+
+  @media screen and (max-width: 600px)
+    margin-bottom 12px
+
+.profile-h1
+  h1-base($dark)
+  margin 0
+
+.profile-email
+  paragraph($dark)
+  margin 0
+
+.profile
+  display flex
+  align-items center
+
+  @media screen and (max-width: 600px)
+    display block
+    text-align center
+
+.profile-text
+  flex 1
+  margin-left 20px

@@ -4,12 +4,13 @@ const { fetch } = window;
 let firebase = null;
 let firestore = null;
 let storage = null;
+let userUpdating = false;
 const settings = {
   /* your settings... */
   timestampsInSnapshots: true
 };
 
-const getFirebase = async () => {
+const init = async () => {
   const { firebase } = await import('./firebase-loader.js');
   for (let i in configs) {
     if (i === 'main') {
@@ -56,7 +57,7 @@ const databaseGet = async (dbName, query) => {
   }
 };
 
-const readStorageURL = async (path) => {
+const storageGetURL = async (path) => {
   if (storage) {
     const ref = storage.ref(path);
     const url = await ref.getDownloadURL();
@@ -64,11 +65,35 @@ const readStorageURL = async (path) => {
   }
 };
 
-getFirebase().then(result => {
+const firestoreGet = async (path, field) => {
+  if (firestore) {
+    const ref = firestore.doc(path);
+    const doc = await ref.get();
+    const { id: $key } = doc;
+    const obj = { $key };
+    if (field) {
+      obj[field] = doc.get(field);
+      return obj;
+    }
+    return { ...(doc.data()), ...obj };
+  }
+};
+
+const updateUser = async (user) => {
+  // prevents from double updating.
+  if (!userUpdating) {
+    userUpdating = true;
+    await updateState('user', { user, userLoaded: true });
+  }
+  userUpdating = false;
+};
+
+init().then(result => {
   firebase = result.firebase;
   firestore = result.firestore;
   storage = result.storage;
-  updateState('firebase-ready', true);
+  firebase.auth().onAuthStateChanged(updateUser);
+  return updateState('firebase-ready', true);
 });
 
-export { databaseGet, firebase, firestore, storage, readStorageURL };
+export { firebase, firestore, storage, updateUser, databaseGet, firestoreGet, storageGetURL };

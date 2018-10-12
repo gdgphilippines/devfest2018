@@ -3,6 +3,15 @@ import { render, html } from 'lit-html';
 import { template } from './template.js';
 import style from './style.styl';
 import '../../components/footer-section/index.js';
+import '../../components/login-component/index.js';
+import '../../components/ticket-anchor/index.js';
+import '../../components/unlink-account-component/index.js';
+import '../../smart-components/link-login-wrapper/index.js';
+import '../../smart-components/unlink-account-wrapper/index.js';
+import '../../smart-components/redirect-on-unauthenticated/index.js';
+import '../../smart-components/user-wrapper/index.js';
+import '../../smart-components/ticket-loading-wrapper/index.js';
+import '../../components/user-profile';
 const { HTMLElement, customElements } = window;
 
 class Page extends TemplateLite(HTMLElement) {
