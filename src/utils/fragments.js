@@ -13,6 +13,7 @@ const fragments = {
   '/disconnect-sponsor': () => import('../pages/page-disconnect-sponsor-member/index.js'),
   '/sponsor-dashboard': () => import('../pages/page-sponsor-dashboard/index.js'),
   '/scan-participant': () => import('../pages/page-scan-participant/index.js'),
+  '/participant-list': () => import('../pages/page-participant-list/index.js'),
   '/codelabs': () => import('../pages/page-codelabs/index.js'),
   '/codelabs/:codelabId': () => import('../pages/page-codelab/index.js'),
   'no-page': () => import('../pages/page-not-found/index.js')

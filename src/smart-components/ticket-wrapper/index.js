@@ -4,8 +4,11 @@ const { HTMLElement, customElements } = window;
 class Component extends TicketStateMixin(HTMLElement) {
   static get is () { return 'ticket-wrapper'; }
 
-  async _getTicketState ({ ticketId }) {
-    this.firstElementChild.ticketId = ticketId;
+  async _getTicketState (data) {
+    if (data) {
+      const { ticketId } = data;
+      this.firstElementChild.ticketId = ticketId;
+    }
   }
 }
 

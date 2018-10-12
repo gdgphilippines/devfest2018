@@ -6,6 +6,8 @@ import '../../components/footer-section/index.js';
 import '../../smart-components/redirect-on-unauthenticated/index.js';
 import '../../smart-components/redirect-on-non-sponsor-member/index.js';
 import '../../smart-components/sponsor-member-loader/index.js';
+import '../../smart-components/sponsor-participant-wrapper/index.js';
+import '../../components/scanned-participant-list/index.js';
 const { HTMLElement, customElements } = window;
 
 class Page extends TemplateLite(HTMLElement) {

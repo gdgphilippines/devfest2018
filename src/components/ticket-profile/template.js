@@ -63,9 +63,7 @@ const template = (html, self) => function () {
         </div>
       </section>
     `
-    : html`
-      Loading...
-    `;
+    : '';
 }.bind(self)();
 
 export { template };

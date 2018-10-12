@@ -1,4 +1,5 @@
 import { firebase } from '../../utils/firebase.js';
+import { updateState } from '../../utils/state.js';
 import { UserStateMixin } from '../../mixins/user-state-mixin/index.js';
 const { HTMLElement, customElements } = window;
 
@@ -10,6 +11,7 @@ class Component extends UserStateMixin(HTMLElement) {
     if (uid) {
       try {
         await firebase.database().ref(`events/devfest2018/tickets/data/${uid}`).set(null);
+        await updateState('ticket', null);
         window.history.pushState({}, '', '/profile');
         window.dispatchEvent(new window.CustomEvent('location-change'));
       } catch (error) {

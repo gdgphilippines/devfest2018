@@ -41,6 +41,7 @@ const fragments = {
   'page-disconnect-sponsor-member': 'src/pages/page-disconnect-sponsor-member/index.js',
   'page-sponsor-dashboard': 'src/pages/page-sponsor-dashboard/index.js',
   'page-scan-participant': 'src/pages/page-scan-participant/index.js',
+  'page-participant-list': 'src/pages/page-participant-list/index.js',
   'page-connect-ticket': 'src/pages/page-connect-ticket/index.js',
   'page-disconnect-ticket': 'src/pages/page-disconnect-ticket/index.js',
   'page-not-found': 'src/pages/page-not-found/index.js'
@@ -102,6 +103,10 @@ const routes = [
   {
     route: '/scan-participant',
     page: 'page-scan-participant'
+  },
+  {
+    route: '/participant-list',
+    page: 'page-participant-list'
   },
   {
     route: '/codelabs',

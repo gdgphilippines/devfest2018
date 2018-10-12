@@ -11,11 +11,11 @@ const template = html => html`
   <!-- Put wrapper for profile -->
   <div class="main">
     <sponsor-participant-wrapper>
-      <participant-list class="profile-component">
+      <scanned-participant-list class="profile-component">
         <h1 class="login-component-h1">
           Participants Scanned
         </h1>
-      </participant-list>
+      </scanned-participant-list>
     </sponsor-participant-wrapper>
 
     <div class="profile-component">
