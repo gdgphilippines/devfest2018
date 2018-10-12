@@ -19,6 +19,7 @@ const userAuthOnDelete = require('./models/users/auth/on-delete');
 const userFirestoreOnWrite = require('./models/users/firestore/on-write');
 const permissionFirestoreOnWrite = require('./models/permissions/firestore/on-write');
 const eventTicketsFirebaseOnWrite = require('./models/event-tickets/firebase/on-write');
+const codelabsFirestoreOnWrite = require('./models/codelabs/firestore/on-write');
 
 admin.initializeApp();
 
@@ -46,6 +47,7 @@ exports.sponsorMembersDatabaseOnWrite = sponsorMembersDatabaseOnWrite(functions,
 exports.userFirestoreOnWrite = userFirestoreOnWrite(functions, firestore);
 exports.permissionFirestoreOnWrite = permissionFirestoreOnWrite(functions, admin);
 exports.eventTicketsFirebaseOnWrite = eventTicketsFirebaseOnWrite(functions, admin, firestore);
+exports.codelabsFirestoreOnWrite = codelabsFirestoreOnWrite(functions, admin);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
