@@ -10,10 +10,13 @@ const template = html => html`
 
   <!-- Put wrapper for profile -->
   <div class="main">
-    <sponsor-scan-wrapper>
-      <ticket-scanner class="ticket-scanner-component">
-      </ticket-scanner>
-    </sponsor-scan-wrapper>
+    <sponsor-participant-wrapper>
+      <participant-list class="profile-component">
+        <h1 class="login-component-h1">
+          Participants Scanned
+        </h1>
+      </participant-list>
+    </sponsor-participant-wrapper>
 
     <div class="profile-component">
       <div class="button-group">

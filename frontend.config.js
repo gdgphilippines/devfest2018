@@ -38,6 +38,7 @@ const fragments = {
   'page-logout': 'src/pages/page-logout/index.js',
   'page-profile': 'src/pages/page-profile/index.js',
   'page-connect-sponsor-member': 'src/pages/page-connect-sponsor-member/index.js',
+  'page-disconnect-sponsor-member': 'src/pages/page-disconnect-sponsor-member/index.js',
   'page-sponsor-dashboard': 'src/pages/page-sponsor-dashboard/index.js',
   'page-scan-participant': 'src/pages/page-scan-participant/index.js',
   'page-connect-ticket': 'src/pages/page-connect-ticket/index.js',
@@ -89,6 +90,10 @@ const routes = [
   {
     route: '/connect-sponsor',
     page: 'page-connect-sponsor-member'
+  },
+  {
+    route: '/disconnect-sponsor',
+    page: 'page-disconnect-sponsor-member'
   },
   {
     route: '/sponsor-dashboard',

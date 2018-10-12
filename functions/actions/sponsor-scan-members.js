@@ -88,7 +88,7 @@ module.exports = (admin) => {
           return Promise.reject(error);
         }
 
-        const { uid } = user;
+        const { uid, displayName, email: userEmail } = user;
         const updates = {};
         const path = `events/${eventId}/sponsor-scanned/lists/sponsors/${sponsorId}/${ticketId}`;
 
@@ -99,7 +99,7 @@ module.exports = (admin) => {
           gender,
           phone,
           positionType,
-          scannedBy: uid,
+          scannedBy: userEmail || displayName || uid,
           dateCreated: admin.database.ServerValue.TIMESTAMP
         };
 

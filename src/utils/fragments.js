@@ -10,6 +10,7 @@ const fragments = {
   '/speakers/:speakerId': () => import('../pages/page-speaker/index.js'),
   '/session/:sessionId': () => import('../pages/page-session/index.js'),
   '/connect-sponsor': () => import('../pages/page-connect-sponsor-member/index.js'),
+  '/disconnect-sponsor': () => import('../pages/page-disconnect-sponsor-member/index.js'),
   '/sponsor-dashboard': () => import('../pages/page-sponsor-dashboard/index.js'),
   '/scan-participant': () => import('../pages/page-scan-participant/index.js'),
   '/codelabs': () => import('../pages/page-codelabs/index.js'),
