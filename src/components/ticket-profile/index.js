@@ -3,7 +3,7 @@ import { PropertiesLite } from '@littleq/element-lite/properties-lite.js';
 import { render, html } from 'lit-html';
 import { template } from './template.js';
 import style from './style.styl';
-const { HTMLElement, customElements } = window;
+const { HTMLElement, customElements, CustomEvent } = window;
 
 class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
   static get is () { return 'ticket-profile'; }
@@ -25,6 +25,10 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
 
   template () {
     return html`<style>${style.toString()}</style>${template(html, this)}`;
+  }
+
+  toggleConsent () {
+    this.dispatchEvent(new CustomEvent('toggle-consent'));
   }
 }
 

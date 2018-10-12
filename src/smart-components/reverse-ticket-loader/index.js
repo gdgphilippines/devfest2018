@@ -18,7 +18,7 @@ class Component extends HTMLElement {
     const data = await databaseGet('main', {
       path: `events/devfest2018/reverse-tickets/data/${ticketId}`
     });
-    await updateState('reverse-ticket', data);
+    await updateState('reverse-ticket', { $key: ticketId, ...data });
   }
 }
 

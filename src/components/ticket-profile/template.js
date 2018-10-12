@@ -1,7 +1,8 @@
 const template = (html, self) => function () {
   const {
     data,
-    dataReady
+    dataReady,
+    toggleConsent
   } = this;
   const {
     name,
@@ -9,7 +10,8 @@ const template = (html, self) => function () {
     age,
     gender,
     phone,
-    positionType
+    positionType,
+    informationConsent
   } = data;
   return dataReady
     ? html`
@@ -36,6 +38,26 @@ const template = (html, self) => function () {
             </li>
             <li class="ticket-item">
               Position: ${positionType}
+            </li>
+            <li class="ticket-item">
+              Sharing information consent: ${informationConsent.toLowerCase() === 'no'
+                ? html`
+                  No
+                  <p class="">
+                    You have said no when you registered to this event. That means sponsors
+                    will not be able to get scan your ticket. If you wish to change this,
+                    Click here...
+                    <button class="button" @click=${toggleConsent.bind(this)}>Give Information</button>
+                  </p>
+                `
+                : html`
+                  Yes
+                  <p class="">
+                    If you wish to not share your information above to sponsors, click here...
+                    <button class="button" @click="${toggleConsent.bind(this)}">Do not Give Information</button>
+                    Take note that they will not be able to scan your ticket.
+                  </p>
+                `}
             </li>
           </ul>
         </div>
