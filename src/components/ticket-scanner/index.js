@@ -67,6 +67,9 @@ class Component extends TemplateLite(PropertiesLite(HTMLElement)) {
         this._stream = await window.navigator.mediaDevices.getUserMedia({ video: true });
       } catch (error) {
         this.errorDispatch(error);
+        this._video.style.display = 'none';
+        // this._camera = this._root.querySelector('#ticket-scanner-camera');
+        // this._camera.style.display = 'block';
         this._cannotScan = true;
       }
     }

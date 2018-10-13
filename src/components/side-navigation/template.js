@@ -15,6 +15,16 @@ const template = (html, self) => function () {
           </li>
         `)}
 
+        ${user
+        ? html`
+          <li class="side-navigation-item" @click="${closeSidebar.bind(this)}">
+            <a href="/codelabs" class="side-navigation-anchor">
+              Codelabs
+            </a>
+          </li>
+        `
+        : ''}
+
         <li class="side-navigation-item" @click="${closeSidebar.bind(this)}">
           ${user
           ? html`

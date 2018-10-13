@@ -15,6 +15,14 @@ const template = (html, self) => function () {
       <video id="ticket-scanner-video" class="video-ticket-scanner" autoplay .height=${height}>
       </video>
 
+      <input
+        id="ticket-scanner-camera" class="camera-ticket-scanner button"
+        type="file"
+        capture="camera"
+        accept="image/*"
+        name="cameraInput"
+        placeholder="Camera">
+
       <p class="ticket-scanner-paragraph">
         If the camera is not working, you can input the ticket number here:
       </p>

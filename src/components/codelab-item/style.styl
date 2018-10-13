@@ -1,0 +1,61 @@
+@import '../../styles/general/layout.styl';
+@import '../../styles/general/spacing.styl';
+@import '../../styles/general/typography.styl';
+@import '../../styles/general/color.styl';
+@import '../../styles/components/card.styl';
+@import '../../styles/components/button.styl';
+
+:host
+  display block
+  max-width 1000px
+  margin 0 auto
+
+.codelab-h1
+  h1-base($dark)
+
+.codelab-content
+  display flex
+  flex-direction row
+  @media screen and (max-width: 800px)
+    display block
+
+.codelab-link-anchor
+  text-decoration none
+  color inherit
+
+.codelab-link-item
+  h2-base($purple)
+  list-style-type none
+  margin 0 0 12px
+
+.codelab-link-list
+  margin 0
+  padding 0
+
+.page-list
+  width 200px
+  margin 24px
+
+.page
+  flex 1
+  min-height 100vh
+  background rgba(0,0,0,0.5);
+
+.mark-page
+  background #fff
+  margin 24px
+  display block
+  padding 24px
+  box-sizing border-box
+
+  img
+    width 100%
+
+  h1
+    h1-base($dark)
+
+  h2
+    h2-base($dark)
+
+  h3
+    h3-base($dark)

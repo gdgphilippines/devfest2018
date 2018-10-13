@@ -113,7 +113,7 @@ const routes = [
     page: 'page-codelabs'
   },
   {
-    route: '/codelabs/:codelabId',
+    route: '/codelabs/:codelabId/:pageId?',
     page: 'page-codelab'
   },
   {

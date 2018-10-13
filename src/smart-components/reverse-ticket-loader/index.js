@@ -1,9 +1,15 @@
 import { databaseGet } from '../../utils/firebase.js';
 import { updateState } from '../../utils/state.js';
+import { ErrorMixin } from '../../mixins/error-mixin/index.js';
 const { HTMLElement, customElements } = window;
 
-class Component extends HTMLElement {
+class Component extends ErrorMixin(HTMLElement) {
   static get is () { return 'reverse-ticket-loader'; }
+
+  constructor () {
+    super();
+    this._retry = 0;
+  }
 
   set ticketId (ticketId) {
     this._ticketId = ticketId;
@@ -15,10 +21,23 @@ class Component extends HTMLElement {
   }
 
   async _getReverseTicket (ticketId) {
-    const data = await databaseGet('main', {
-      path: `events/devfest2018/reverse-tickets/data/${ticketId}`
-    });
-    await updateState('reverse-ticket', { $key: ticketId, ...data });
+    try {
+      const data = await databaseGet('main', {
+        path: `events/devfest2018/reverse-tickets/data/${ticketId}`
+      });
+      if (data) {
+        await updateState('reverse-ticket', { $key: ticketId, ...data });
+      } else {
+        if (this._retry < 5) {
+          this._retry++;
+          setTimeout(async () => {
+            await this._getReverseTicket(ticketId);
+          }, 10000);
+        }
+      }
+    } catch (error) {
+      this.error(error);
+    }
   }
 }
 

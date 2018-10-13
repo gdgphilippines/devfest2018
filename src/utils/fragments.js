@@ -15,7 +15,7 @@ const fragments = {
   '/scan-participant': () => import('../pages/page-scan-participant/index.js'),
   '/participant-list': () => import('../pages/page-participant-list/index.js'),
   '/codelabs': () => import('../pages/page-codelabs/index.js'),
-  '/codelabs/:codelabId': () => import('../pages/page-codelab/index.js'),
+  '/codelabs/:codelabId/:pageId?': () => import('../pages/page-codelab/index.js'),
   'no-page': () => import('../pages/page-not-found/index.js')
 };
 export { fragments };

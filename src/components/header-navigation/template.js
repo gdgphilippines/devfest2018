@@ -12,6 +12,16 @@ const template = (html, self) => function () {
           </li>
         `)}
 
+        ${user
+        ? html`
+          <li class="navigation-item">
+            <a href="/codelabs" class="navigation-anchor">
+              Codelabs
+            </a>
+          </li>
+        `
+        : ''}
+
         <li class="navigation-item">
           ${user
           ? html`

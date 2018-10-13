@@ -18,7 +18,7 @@ class Component extends ReverseTicketStateMixin(EventWrapperMixin(HTMLElement)) 
   }
 
   _getReverseTicketState (data) {
-    this.firstElementChild.dataReady = true;
+    this.firstElementChild.dataReady = !!data;
     this.firstElementChild.data = data;
   }
 
