@@ -1,12 +1,15 @@
 const template = (html, self) => function () {
   const { codelab, _loadPage, page } = this;
-  const { name, listNames, list, pageId, $key } = codelab;
+  const { name, listNames, list, pageId, $key, typeId } = codelab;
   return html`
-    <header class="codelab-header">
-      <h1 class="codelab-h1">${name}</h1>
+    <header class="codelab-header card">
+      <h1 class="codelab-h1">
+        <img class="codelab-logo" src="/assets/images/${typeId}-logo.png">
+        ${name}
+      </h1>
     </header>
     <div class="codelab-content">
-      <aside class="page-list">
+      <aside class="page-list card">
         <ul class="codelab-link-list">
           ${list && list.length ? list.map((item, index) => html`
             <li class="codelab-link-item">
@@ -15,6 +18,11 @@ const template = (html, self) => function () {
               </a>
             </li>
           `) : ''}
+          <li class="codelab-link-item">
+            <a class="codelab-link-anchor" href="/codelabs">
+              Go back to main codelab page
+            </a>
+          </li>
         </ul>
       </aside>
       <section class="page">
