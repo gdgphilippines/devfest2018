@@ -12,8 +12,8 @@ export const ErrorMixin = dedupingMixin(base => {
         alert(message || detail);
       }
       if (window.Raven) {
-        console.error(error);
-        window.Raven.captureException(error);
+        console.error(error.detail || error);
+        window.Raven.captureException(error.detail || error);
       }
     }
   }
