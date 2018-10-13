@@ -19,14 +19,15 @@ const onWrite = admin => (change, context) => {
     }
   }
   if (document) { // onCreate or onUpdate
-    const { events, typeId, name, list } = document;
+    const { events, typeId, name, list, listNames } = document;
     for (let i in events) {
       const eventId = events[i];
       const path = `events/${eventId}/codelabs`;
       updates[`${path}/data/${codelabId}`] = {
         name: name || '',
         typeId: typeId || '',
-        list: list || []
+        list: list || [],
+        listNames: listNames || []
       };
       if (typeId) {
         updates[`${path}/lists/types/${typeId}/${codelabId}`] = {
