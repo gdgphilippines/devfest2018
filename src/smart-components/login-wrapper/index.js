@@ -11,7 +11,7 @@ class Component extends AuthWrapperMixin(HTMLElement) {
       if (detail) {
         const provider = new firebase.auth[`${detail}AuthProvider`]();
         snackbar.showText(`Signing in with your account on ${detail}`);
-        await firebase.auth().signInWithRedirect(provider);
+        await firebase.auth().signInWithPopup(provider);
       } else {
         throw new Error('auth/no-provider');
       }

@@ -45,7 +45,7 @@ class Component extends UserStateMixin(AuthWrapperMixin(HTMLElement)) {
         const providerId = `${detail.toLowerCase()}.com`;
         if (providerData.findIndex(item => item.providerId === providerId) < 0) {
           const provider = new firebase.auth[`${detail}AuthProvider`]();
-          await this.user.linkWithRedirect(provider);
+          await this.user.linkWithPopup(provider);
           snackbar.showText(`Signing in with your account on ${detail}`);
         } else {
           snackbar.showText(`You are already signed in on ${detail}`);
